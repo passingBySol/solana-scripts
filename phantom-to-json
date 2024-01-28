@@ -1,0 +1,13 @@
+#!python3
+import base58
+import sys
+
+if len(sys.argv) < 2:
+	print("USAGE: phantom-to-json <YOUR PRIVATE KEY FROM PHANTOM HERE>")
+	exit(0)
+if len(sys.argv[1]) != 88:
+	print("USAGE: phantom-to-json <YOUR PRIVATE KEY FROM PHANTOM HERE>")
+	exit(0)
+byte_array = base58.b58decode(sys.argv[1])
+json_string = "[" + ",".join(map(lambda b: str(b), byte_array)) + "]"
+print(json_string)
